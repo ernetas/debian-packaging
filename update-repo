@@ -19,8 +19,8 @@ function finish {
 apt-ftparchive packages . > Packages || finish
 gzip -c Packages > Packages.gz || finish
 apt-ftparchive release . > Release || finish
-gpg --batch --yes --passphrase-file /root/.gnupg/passphrase_apt --digest-algo SHA512 --clearsign -o InRelease Release || finish
-gpg --batch --yes --passphrase-file /root/.gnupg/passphrase_apt --digest-algo SHA512 -abs -o Release.gpg Release || finish
-chown -fR www-data:www-data /var/www/ || finish
+gpg --batch --yes --digest-algo SHA512 --clearsign -o InRelease Release || finish
+gpg --batch --yes --digest-algo SHA512 -abs -o Release.gpg Release || finish
+chown -fR 1001:1001 /var/www/ || finish
 rm /var/run/update-repo.lock
 
